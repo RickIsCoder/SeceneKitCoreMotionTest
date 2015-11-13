@@ -150,7 +150,57 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         baseBox.materials = [material2, material2, material3, material4, material5, material6]
         let boxNode = SCNNode(geometry: baseBox)
         boxNode.position = SCNVector3(x: 0, y: -10, z: 0)
-        scene.rootNode.addChildNode(boxNode)
+        
+        // Create planes
+        let planesFront = SCNPlane(width: 20, height: 20)
+        planesFront.firstMaterial!.doubleSided = true
+        planesFront.firstMaterial!.diffuse.contents = UIColor.redColor()
+        let planesFrontNode = SCNNode(geometry: planesFront)
+        planesFrontNode.position = SCNVector3(x: 0, y: 0, z: -10)
+        
+        let planesTop = SCNPlane(width: 20, height: 20)
+        planesTop.firstMaterial!.doubleSided = true
+        planesTop.firstMaterial!.diffuse.contents = UIColor.blueColor()
+        let planesTopNode = SCNNode(geometry: planesTop)
+        planesTopNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        planesTopNode.position = SCNVector3(x: 0, y: 10, z: 0)
+        
+        let planesBack = SCNPlane(width: 20, height: 20)
+        planesBack.firstMaterial!.doubleSided = true
+        planesBack.firstMaterial!.diffuse.contents = UIColor.whiteColor()
+        let planesBackNode = SCNNode(geometry: planesBack)
+        planesBackNode.position = SCNVector3(x: 0, y: 0, z: 10)
+        
+        let planesBottom = SCNPlane(width: 20, height: 20)
+        planesBottom.firstMaterial!.doubleSided = true
+        planesBottom.firstMaterial!.diffuse.contents = UIColor.greenColor()
+        let planesBottomNode = SCNNode(geometry: planesBottom)
+        planesBottomNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        planesBottomNode.position = SCNVector3(x: 0, y: -10, z: 0)
+        
+        let planesLeft = SCNPlane(width: 20, height: 20)
+        planesLeft.firstMaterial!.doubleSided = true
+        planesLeft.firstMaterial!.diffuse.contents = UIColor.purpleColor()
+        let planesLeftNode = SCNNode(geometry: planesLeft)
+        planesLeftNode.pivot = SCNMatrix4MakeRotation(Float(3*M_PI_2), 0, 1, 0)
+        planesLeftNode.position = SCNVector3(x: -10, y: 0, z: 0)
+        
+        let planesRight = SCNPlane(width: 20, height: 20)
+        planesRight.firstMaterial!.doubleSided = true
+        planesRight.firstMaterial!.diffuse.contents = UIColor.orangeColor()
+        let planesRightNode = SCNNode(geometry: planesRight)
+        planesRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
+        planesRightNode.position = SCNVector3(x: 10, y: 0, z: 0)
+        
+        
+        scene.rootNode.addChildNode(planesFrontNode)
+        scene.rootNode.addChildNode(planesTopNode)
+        scene.rootNode.addChildNode(planesBackNode)
+        scene.rootNode.addChildNode(planesBottomNode)
+        scene.rootNode.addChildNode(planesLeftNode)
+        scene.rootNode.addChildNode(planesRightNode)
+        
+        //scene.rootNode.addChildNode(boxNode)
         
         
         // Respond to user head movement

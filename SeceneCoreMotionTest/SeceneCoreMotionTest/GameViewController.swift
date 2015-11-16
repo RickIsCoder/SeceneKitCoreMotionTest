@@ -156,7 +156,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         planesFront.firstMaterial!.doubleSided = true
         planesFront.firstMaterial!.diffuse.contents = UIColor.redColor()
         let planesFrontNode = SCNNode(geometry: planesFront)
-        planesFrontNode.position = SCNVector3(x: 0, y: 0, z: -10)
+        planesFrontNode.position = SCNVector3(x: 0, y: 0, z: -20)
+        
+        let textFront = SCNText(string: "这是前面", extrusionDepth: 0.0)
+        textFront.font = UIFont(name: "Arial", size: 2)
+        let textFrontNode = SCNNode(geometry: textFront)
+        textFrontNode.position = SCNVector3(0, 0, -15)
+        
+        let planesFrontLeft = SCNPlane(width: 20, height: 20)
+        planesFrontLeft.firstMaterial!.doubleSided = true
+        planesFrontLeft.firstMaterial!.diffuse.contents = UIColor.greenColor()
+        let planesFrontLeftNode = SCNNode(geometry: planesFrontLeft)
+        planesFrontLeftNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_4)*3, 0, 1, 0)
+        planesFrontLeftNode.position = SCNVector3(-15, 0, 0)
+        
         
         let planesTop = SCNPlane(width: 20, height: 20)
         planesTop.firstMaterial!.doubleSided = true
@@ -169,7 +182,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         planesBack.firstMaterial!.doubleSided = true
         planesBack.firstMaterial!.diffuse.contents = UIColor.whiteColor()
         let planesBackNode = SCNNode(geometry: planesBack)
-        planesBackNode.position = SCNVector3(x: 0, y: 0, z: 10)
+        planesBackNode.position = SCNVector3(x: 0, y: 0, z: 20)
         
         let planesBottom = SCNPlane(width: 20, height: 20)
         planesBottom.firstMaterial!.doubleSided = true
@@ -182,15 +195,22 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         planesLeft.firstMaterial!.doubleSided = true
         planesLeft.firstMaterial!.diffuse.contents = UIColor.purpleColor()
         let planesLeftNode = SCNNode(geometry: planesLeft)
-        planesLeftNode.pivot = SCNMatrix4MakeRotation(Float(3*M_PI_2), 0, 1, 0)
-        planesLeftNode.position = SCNVector3(x: -10, y: 0, z: 0)
+        planesLeftNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
+        planesLeftNode.position = SCNVector3(x: -20, y: 0, z: 0)
         
         let planesRight = SCNPlane(width: 20, height: 20)
         planesRight.firstMaterial!.doubleSided = true
         planesRight.firstMaterial!.diffuse.contents = UIColor.orangeColor()
         let planesRightNode = SCNNode(geometry: planesRight)
         planesRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
-        planesRightNode.position = SCNVector3(x: 10, y: 0, z: 0)
+        planesRightNode.position = SCNVector3(x: 20, y: 0, z: 0)
+        
+        let planesFrontRight = SCNPlane(width: 20, height: 20)
+        planesFrontRight.firstMaterial!.doubleSided = true
+        planesFrontRight.firstMaterial!.diffuse.contents = UIColor.greenColor()
+        let planesFrontRightNode = SCNNode(geometry: planesFrontRight)
+        planesFrontRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_4), 0, 1, 0)
+        planesFrontRightNode.position = SCNVector3(10, 0, -15)
         
         
         scene.rootNode.addChildNode(planesFrontNode)
@@ -199,6 +219,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         scene.rootNode.addChildNode(planesBottomNode)
         scene.rootNode.addChildNode(planesLeftNode)
         scene.rootNode.addChildNode(planesRightNode)
+        
+        scene.rootNode.addChildNode(textFrontNode)
+        
+        scene.rootNode.addChildNode(planesFrontLeftNode)
+        scene.rootNode.addChildNode(planesFrontRightNode)
         
         //scene.rootNode.addChildNode(boxNode)
         

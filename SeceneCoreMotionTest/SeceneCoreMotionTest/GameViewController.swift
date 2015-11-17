@@ -207,7 +207,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         let planesFrontRight = SCNPlane(width: 20, height: 20)
         planesFrontRight.firstMaterial!.doubleSided = true
-        planesFrontRight.firstMaterial!.diffuse.contents = UIColor.greenColor()
+        planesFrontRight.firstMaterial!.diffuse.contents = UIImage(named: "warlock")
         let planesFrontRightNode = SCNNode(geometry: planesFrontRight)
         planesFrontRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_4), 0, 1, 0)
         planesFrontRightNode.position = SCNVector3(10, 0, -15)

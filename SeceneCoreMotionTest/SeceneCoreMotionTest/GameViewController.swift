@@ -21,6 +21,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     var cameraPitchNode : SCNNode?
     var cameraYawNode : SCNNode?
     
+    var boxNode: SCNNode?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -213,6 +215,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         planesFrontRightNode.position = SCNVector3(10, 0, -15)
         
         
+        let tapBox = SCNBox(width: 5, height: 5, length: 5, chamferRadius: 1)
+        tapBox.firstMaterial!.diffuse.contents = UIColor.redColor()
+        self.boxNode = SCNNode(geometry: tapBox)
+        self.boxNode!.position = SCNVector3(0, 4, -10)
+        
+        
+        
+        scene.rootNode.addChildNode(self.boxNode!)
+        
         scene.rootNode.addChildNode(planesFrontNode)
         scene.rootNode.addChildNode(planesTopNode)
         scene.rootNode.addChildNode(planesBackNode)
@@ -248,6 +259,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
                 cameraPitchNode.eulerAngles = SCNVector3Make(pitch, 0.0, 0.0)
                 cameraYawNode.eulerAngles = SCNVector3Make(0.0, yaw, 0.0)
         })
+    
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        tapGesture.addTarget(self, action: "tapHandle:")
+        self.scnView.addGestureRecognizer(tapGesture)
     }
     
     func degreesToRadians(degrees: Float) -> Float {
@@ -256,6 +273,31 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     
     func radiansToDegrees(radians: Float) -> Float {
         return (180.0/Float(M_PI)) * radians
+    }
+    
+    func tapHandle(recognizer: UITapGestureRecognizer) {
+        let location = recognizer.locationInView(self.scnView)
+        
+        let hitResults = scnView.hitTest(location, options: nil)
+        if hitResults.count > 0 {
+            let hitedNode =  hitResults[0].node
+            if hitedNode == self.boxNode! {
+                SCNTransaction.begin()
+                SCNTransaction.setAnimationDuration(0.5)
+                
+                let material = hitedNode.geometry?.firstMaterial
+                if material?.diffuse.contents as! UIColor == UIColor.purpleColor() {
+                    material?.diffuse.contents = UIColor.redColor()
+                } else {
+                    material?.diffuse.contents = UIColor.purpleColor()
+                }
+                
+                SCNTransaction.commit()
+                
+                let action = SCNAction.moveByX(0, y: -0.5, z: 0, duration: 0.5)
+                hitedNode.runAction(action)
+            }
+        }
     }
     
 //    func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -292,6 +334,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //            SCNTransaction.commit()
 //        }
 //    }
+    
     
     func renderer(aRenderer: SCNSceneRenderer, updateAtTime time: NSTimeInterval)
     {

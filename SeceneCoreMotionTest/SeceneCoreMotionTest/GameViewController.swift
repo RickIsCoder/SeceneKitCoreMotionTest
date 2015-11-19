@@ -123,7 +123,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         diffuseLight.color = UIColor(white: 1.0, alpha: 1.0)
         let diffuseLightNode = SCNNode()
         diffuseLightNode.light = diffuseLight
-        diffuseLightNode.position = SCNVector3(x: -30, y: 30, z: 50)
+        diffuseLightNode.position = SCNVector3(x: 0, y: 0, z: 0)
         scene.rootNode.addChildNode(diffuseLightNode)
         
         let material = SCNMaterial()
@@ -177,20 +177,23 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         planesTop.firstMaterial!.doubleSided = true
         planesTop.firstMaterial!.diffuse.contents = UIColor.blueColor()
         let planesTopNode = SCNNode(geometry: planesTop)
-        planesTopNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        //planesTopNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        planesTopNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(90), 0, 0)
         planesTopNode.position = SCNVector3(x: 0, y: 10, z: 0)
         
         let planesBack = SCNPlane(width: 20, height: 20)
         planesBack.firstMaterial!.doubleSided = true
         planesBack.firstMaterial!.diffuse.contents = UIColor.whiteColor()
         let planesBackNode = SCNNode(geometry: planesBack)
+        planesBackNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(180), 0)
         planesBackNode.position = SCNVector3(x: 0, y: 0, z: 20)
         
         let planesBottom = SCNPlane(width: 20, height: 20)
         planesBottom.firstMaterial!.doubleSided = true
         planesBottom.firstMaterial!.diffuse.contents = UIColor.greenColor()
         let planesBottomNode = SCNNode(geometry: planesBottom)
-        planesBottomNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        //planesBottomNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+        planesBottomNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(-90), 0, 0)
         planesBottomNode.position = SCNVector3(x: 0, y: -10, z: 0)
         
         let planesLeft = SCNPlane(width: 20, height: 20)
@@ -221,6 +224,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         self.boxNode!.position = SCNVector3(0, 4, -10)
         
         
+        let tube = SCNTube(innerRadius: 4, outerRadius: 5, height: 10)
+        tube.firstMaterial!.diffuse.contents = UIImage(named: "warlock")
+        let tubeNode = SCNNode(geometry: tube)
+        tubeNode.position = SCNVector3(-10, 5, -15)
+        
+        
         
         scene.rootNode.addChildNode(self.boxNode!)
         
@@ -235,6 +244,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         scene.rootNode.addChildNode(planesFrontLeftNode)
         scene.rootNode.addChildNode(planesFrontRightNode)
+        
+        scene.rootNode.addChildNode(tubeNode)
         
         //scene.rootNode.addChildNode(boxNode)
         

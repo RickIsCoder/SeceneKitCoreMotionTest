@@ -230,7 +230,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         tubeNode.position = SCNVector3(-10, 5, -15)
         
         
-        
         scene.rootNode.addChildNode(self.boxNode!)
         
         scene.rootNode.addChildNode(planesFrontNode)
@@ -247,6 +246,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         scene.rootNode.addChildNode(tubeNode)
         
+        scene.rootNode.childNodeWithName("ship", recursively: true)
+        
+        
+        
+        // add node from another scene
+        // add .scn file
+        let scene1 = SCNScene(named: "art.scnassets/ship.scn")!
+        scene.rootNode.addChildNode(scene1.rootNode.childNodeWithName("ship", recursively: true)!)
         //scene.rootNode.addChildNode(boxNode)
         
         
@@ -262,8 +269,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
                 let roll = Float(currentAttitude.roll)
                 let pitch = Float(currentAttitude.pitch)
                 let yaw = Float(currentAttitude.yaw)
-                
-                //only working at 60FPS on iPhone 6... WHY
                 
                 //according to documentation, SCNVector3 from a node is, (pitch, yaw, node)
                 cameraRollNode.eulerAngles = SCNVector3Make(0.0, 0.0, -roll)

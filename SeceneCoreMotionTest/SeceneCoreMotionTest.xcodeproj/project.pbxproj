@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D24F4EE1C059FDC0096B77F /* NewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24F4ED1C059FDC0096B77F /* NewPageViewController.swift */; };
 		1DEB9B311BF1EA100009262C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB9B301BF1EA100009262C /* AppDelegate.swift */; };
 		1DEB9B331BF1EA100009262C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DEB9B321BF1EA100009262C /* art.scnassets */; };
 		1DEB9B351BF1EA100009262C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEB9B341BF1EA100009262C /* GameViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D24F4ED1C059FDC0096B77F /* NewPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPageViewController.swift; sourceTree = "<group>"; };
 		1DEB9B2D1BF1EA100009262C /* SeceneCoreMotionTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeceneCoreMotionTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DEB9B301BF1EA100009262C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DEB9B321BF1EA100009262C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				1DEB9B321BF1EA100009262C /* art.scnassets */,
 				1DEB9B341BF1EA100009262C /* GameViewController.swift */,
 				1DEB9B361BF1EA100009262C /* Main.storyboard */,
+				1D24F4ED1C059FDC0096B77F /* NewPageViewController.swift */,
 				1DEB9B391BF1EA100009262C /* Assets.xcassets */,
 				1DEB9B3B1BF1EA100009262C /* LaunchScreen.storyboard */,
 				1DEB9B3E1BF1EA100009262C /* Info.plist */,
@@ -142,6 +145,7 @@
 			files = (
 				1DEB9B351BF1EA100009262C /* GameViewController.swift in Sources */,
 				1DEB9B311BF1EA100009262C /* AppDelegate.swift in Sources */,
+				1D24F4EE1C059FDC0096B77F /* NewPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +301,7 @@
 				1DEB9B431BF1EA100009262C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

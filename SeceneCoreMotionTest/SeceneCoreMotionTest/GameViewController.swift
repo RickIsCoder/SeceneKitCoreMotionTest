@@ -17,11 +17,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     @IBOutlet var scnView: SCNView!
     
     var motionManager : CMMotionManager?
+    let camerasNode: SCNNode? = SCNNode()
     var cameraRollNode : SCNNode?
     var cameraPitchNode : SCNNode?
     var cameraYawNode : SCNNode?
     
     var boxNode: SCNNode?
+    var tapTextNode: SCNNode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,16 +90,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         camera.xFov = 45
         camera.yFov = 45
         
-        let camerasNode = SCNNode()
-        camerasNode.camera = camera
-        camerasNode.position = SCNVector3(x: 0, y: 0, z: 0)
+        self.camerasNode!.camera = camera
+        self.camerasNode!.position = SCNVector3(x: 0, y: 0, z: 0)
         // The user will be holding their device up (i.e. 90 degrees roll from a flat orientation)
         // so roll the camera by -90 degrees to orient the view correctly
         // otherwise the object will be created "below" the user
-        camerasNode.eulerAngles = SCNVector3Make(degreesToRadians(-90.0), 0, 0)
+        camerasNode!.eulerAngles = SCNVector3Make(degreesToRadians(-90.0), 0, 0)
         
         let cameraRollNode = SCNNode()
-        cameraRollNode.addChildNode(camerasNode)
+        cameraRollNode.addChildNode(camerasNode!)
         
         let cameraPitchNode = SCNNode()
         cameraPitchNode.addChildNode(cameraRollNode)
@@ -165,6 +166,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let textFrontNode = SCNNode(geometry: textFront)
         textFrontNode.position = SCNVector3(0, 0, -15)
         
+        let tapText = SCNText(string: "点我翻页", extrusionDepth: 0.0)
+        tapText.font = UIFont(name: "Arial", size: 2)
+        self.tapTextNode = SCNNode(geometry: tapText)
+        self.tapTextNode!.position = SCNVector3(15, 3, 0)
+        self.tapTextNode!.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(-90), 0)
+        
 //        let planesFrontLeft = SCNPlane(width: 20, height: 20)
 //        planesFrontLeft.firstMaterial!.doubleSided = true
 //        planesFrontLeft.firstMaterial!.diffuse.contents = UIColor.greenColor()
@@ -225,7 +232,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         
         let tube = SCNTube(innerRadius: 4, outerRadius: 5, height: 10)
-        tube.firstMaterial!.diffuse.contents = UIImage(named: "warlock")
+        tube.firstMaterial!.diffuse.contents = UIImage(named: "ground")
         let tubeNode = SCNNode(geometry: tube)
         tubeNode.position = SCNVector3(-10, 5, -15)
         
@@ -251,6 +258,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         //scene.rootNode.addChildNode(planesBottomNode)
         scene.rootNode.addChildNode(planesLeftNode)
         //scene.rootNode.addChildNode(planesRightNode)
+        scene.rootNode.addChildNode(tapTextNode!)
         
         scene.rootNode.addChildNode(textFrontNode)
         
@@ -325,6 +333,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
                 
                 let action = SCNAction.moveByX(0, y: -0.5, z: 0, duration: 0.5)
                 hitedNode.runAction(action)
+            } else if hitedNode == self.tapTextNode! {
+                let camerasAction = SCNAction.moveTo(SCNVector3(15, 10, 0), duration: 0.5)
+                self.camerasNode!.runAction(camerasAction, completionHandler: { () -> Void in
+                    self.performSegueWithIdentifier("Show New Page", sender: self)
+                })
             }
         }
     }
@@ -409,6 +422,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
+    }
+    
+    // nav 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Show New Page" {
+            
+        }
     }
 
 }

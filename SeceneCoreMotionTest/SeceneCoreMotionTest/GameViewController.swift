@@ -161,16 +161,16 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        let planesFrontNode = SCNNode(geometry: planesFront)
 //        planesFrontNode.position = SCNVector3(x: 0, y: 0, z: -20)
         
-        let textFront = SCNText(string: "这是前面", extrusionDepth: 0.0)
-        textFront.font = UIFont(name: "Arial", size: 2)
-        let textFrontNode = SCNNode(geometry: textFront)
-        textFrontNode.position = SCNVector3(0, 0, -15)
-        
-        let tapText = SCNText(string: "点我翻页", extrusionDepth: 0.0)
-        tapText.font = UIFont(name: "Arial", size: 2)
-        self.tapTextNode = SCNNode(geometry: tapText)
-        self.tapTextNode!.position = SCNVector3(15, 3, 0)
-        self.tapTextNode!.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(-90), 0)
+//        let textFront = SCNText(string: "这是前面", extrusionDepth: 0.0)
+//        textFront.font = UIFont(name: "Arial", size: 2)
+//        let textFrontNode = SCNNode(geometry: textFront)
+//        textFrontNode.position = SCNVector3(0, 0, -15)
+//        
+//        let tapText = SCNText(string: "点我翻页", extrusionDepth: 0.0)
+//        tapText.font = UIFont(name: "Arial", size: 2)
+//        self.tapTextNode = SCNNode(geometry: tapText)
+//        self.tapTextNode!.position = SCNVector3(15, 3, 0)
+//        self.tapTextNode!.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(-90), 0)
         
 //        let planesFrontLeft = SCNPlane(width: 20, height: 20)
 //        planesFrontLeft.firstMaterial!.doubleSided = true
@@ -188,12 +188,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        planesTopNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(90), 0, 0)
 //        planesTopNode.position = SCNVector3(x: 0, y: 10, z: 0)
         
-        let planesBack = SCNPlane(width: 20, height: 20)
-        planesBack.firstMaterial!.doubleSided = true
-        planesBack.firstMaterial!.diffuse.contents = UIColor.whiteColor()
-        let planesBackNode = SCNNode(geometry: planesBack)
-        planesBackNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(180), 0)
-        planesBackNode.position = SCNVector3(x: 0, y: 0, z: 20)
+//        let planesBack = SCNPlane(width: 20, height: 20)
+//        planesBack.firstMaterial!.doubleSided = true
+//        planesBack.firstMaterial!.diffuse.contents = UIColor.whiteColor()
+//        let planesBackNode = SCNNode(geometry: planesBack)
+//        planesBackNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(180), 0)
+//        planesBackNode.position = SCNVector3(x: 0, y: 0, z: 20)
         
 //        let planesBottom = SCNPlane(width: 20, height: 20)
 //        planesBottom.firstMaterial!.doubleSided = true
@@ -203,12 +203,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        planesBottomNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(-90), 0, 0)
 //        planesBottomNode.position = SCNVector3(x: 0, y: -10, z: 0)
         
-        let planesLeft = SCNPlane(width: 20, height: 20)
-        planesLeft.firstMaterial!.doubleSided = true
-        planesLeft.firstMaterial!.diffuse.contents = UIColor.purpleColor()
-        let planesLeftNode = SCNNode(geometry: planesLeft)
-        planesLeftNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
-        planesLeftNode.position = SCNVector3(x: -20, y: 0, z: 0)
+//        let planesLeft = SCNPlane(width: 20, height: 20)
+//        planesLeft.firstMaterial!.doubleSided = true
+//        planesLeft.firstMaterial!.diffuse.contents = UIColor.purpleColor()
+//        let planesLeftNode = SCNNode(geometry: planesLeft)
+//        planesLeftNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
+//        planesLeftNode.position = SCNVector3(x: -20, y: 0, z: 0)
         
 //        let planesRight = SCNPlane(width: 20, height: 20)
 //        planesRight.firstMaterial!.doubleSided = true
@@ -217,24 +217,45 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        planesRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 0, 1, 0)
 //        planesRightNode.position = SCNVector3(x: 20, y: 0, z: 0)
         
-        let planesFrontRight = SCNPlane(width: 20, height: 20)
+        let planesFrontRight = SCNPlane(width: 10, height: 15)
         planesFrontRight.firstMaterial!.doubleSided = true
-        planesFrontRight.firstMaterial!.diffuse.contents = UIImage(named: "warlock")
+        planesFrontRight.firstMaterial!.diffuse.contents = UIImage(named: "UFO")
         let planesFrontRightNode = SCNNode(geometry: planesFrontRight)
         planesFrontRightNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_4), 0, 1, 0)
         planesFrontRightNode.position = SCNVector3(10, 0, -15)
         
         
-        let tapBox = SCNBox(width: 5, height: 5, length: 5, chamferRadius: 1)
-        tapBox.firstMaterial!.diffuse.contents = UIColor.redColor()
-        self.boxNode = SCNNode(geometry: tapBox)
-        self.boxNode!.position = SCNVector3(0, 4, -10)
+//        let tapBox = SCNBox(width: 5, height: 5, length: 5, chamferRadius: 1)
+//        tapBox.firstMaterial!.diffuse.contents = UIColor.redColor()
+//        self.boxNode = SCNNode(geometry: tapBox)
+//        self.boxNode!.position = SCNVector3(0, 4, -10)
         
         
-        let tube = SCNTube(innerRadius: 4, outerRadius: 5, height: 10)
-        tube.firstMaterial!.diffuse.contents = UIImage(named: "ground")
-        let tubeNode = SCNNode(geometry: tube)
-        tubeNode.position = SCNVector3(-10, 5, -15)
+//        let tube = SCNTube(innerRadius: 4, outerRadius: 5, height: 10)
+//        tube.firstMaterial!.diffuse.contents = UIImage(named: "ground")
+//        let tubeNode = SCNNode(geometry: tube)
+//        tubeNode.position = SCNVector3(-10, 5, -15)
+        
+        
+        let guitar = SCNPlane(width: 10, height: 10)
+        guitar.firstMaterial!.diffuse.contents = UIImage(named: "guitar")
+        let guitarNode = SCNNode(geometry: guitar)
+        guitarNode.position = SCNVector3(-5, 5, -15)
+        //guitarNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(80), 0)
+        scene.rootNode.addChildNode(guitarNode)
+        
+        let boon = SCNPlane(width: 10, height: 10)
+        boon.firstMaterial!.diffuse.contents = UIImage(named: "boon")
+        let boonNode = SCNNode(geometry: boon)
+        boonNode.position = SCNVector3(-10, 5, 0)
+        boonNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(90), 0)
+        scene.rootNode.addChildNode(boonNode)
+        
+        let eyes = SCNPlane(width: 20, height: 10)
+        eyes.firstMaterial!.diffuse.contents = UIImage(named: "eyes")
+        let eyesNode = SCNNode(geometry: eyes)
+        eyesNode.position = SCNVector3(0, 0, -20)
+        scene.rootNode.addChildNode(eyesNode)
         
         
         // sky 
@@ -250,31 +271,31 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         scene.rootNode.addChildNode(floorNode)
         
         
-        scene.rootNode.addChildNode(self.boxNode!)
+       // scene.rootNode.addChildNode(self.boxNode!)
         
         //scene.rootNode.addChildNode(planesFrontNode)
         //scene.rootNode.addChildNode(planesTopNode)
-        scene.rootNode.addChildNode(planesBackNode)
+        //scene.rootNode.addChildNode(planesBackNode)
         //scene.rootNode.addChildNode(planesBottomNode)
-        scene.rootNode.addChildNode(planesLeftNode)
+        //scene.rootNode.addChildNode(planesLeftNode)
         //scene.rootNode.addChildNode(planesRightNode)
-        scene.rootNode.addChildNode(tapTextNode!)
+        //scene.rootNode.addChildNode(tapTextNode)
         
-        scene.rootNode.addChildNode(textFrontNode)
+        //scene.rootNode.addChildNode(textFrontNode)
         
         //scene.rootNode.addChildNode(planesFrontLeftNode)
         scene.rootNode.addChildNode(planesFrontRightNode)
         
-        scene.rootNode.addChildNode(tubeNode)
+//        scene.rootNode.addChildNode(tubeNode)
         
-        scene.rootNode.childNodeWithName("ship", recursively: true)
+        //scene.rootNode.childNodeWithName("ship", recursively: true)
         
         
         
         // add node from another scene
         // add .scn file
-        let scene1 = SCNScene(named: "art.scnassets/ship.scn")!
-        scene.rootNode.addChildNode(scene1.rootNode.childNodeWithName("ship", recursively: true)!)
+        //let scene1 = SCNScene(named: "art.scnassets/ship.scn")!
+        //scene.rootNode.addChildNode(scene1.rootNode.childNodeWithName("ship", recursively: true)!)
         //scene.rootNode.addChildNode(boxNode)
         
         
@@ -313,33 +334,33 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     }
     
     func tapHandle(recognizer: UITapGestureRecognizer) {
-        let location = recognizer.locationInView(self.scnView)
-        
-        let hitResults = scnView.hitTest(location, options: nil)
-        if hitResults.count > 0 {
-            let hitedNode =  hitResults[0].node
-            if hitedNode == self.boxNode! {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
-                
-                let material = hitedNode.geometry?.firstMaterial
-                if material?.diffuse.contents as! UIColor == UIColor.purpleColor() {
-                    material?.diffuse.contents = UIColor.redColor()
-                } else {
-                    material?.diffuse.contents = UIColor.purpleColor()
-                }
-                
-                SCNTransaction.commit()
-                
-                let action = SCNAction.moveByX(0, y: -0.5, z: 0, duration: 0.5)
-                hitedNode.runAction(action)
-            } else if hitedNode == self.tapTextNode! {
-                let camerasAction = SCNAction.moveTo(SCNVector3(15, 10, 0), duration: 0.5)
-                self.camerasNode!.runAction(camerasAction, completionHandler: { () -> Void in
-                    self.performSegueWithIdentifier("Show New Page", sender: self)
-                })
-            }
-        }
+//        let location = recognizer.locationInView(self.scnView)
+//        
+//        let hitResults = scnView.hitTest(location, options: nil)
+//        if hitResults.count > 0 {
+//            let hitedNode =  hitResults[0].node
+//            if hitedNode == self.boxNode {
+//                SCNTransaction.begin()
+//                SCNTransaction.setAnimationDuration(0.5)
+//                
+//                let material = hitedNode.geometry?.firstMaterial
+//                if material?.diffuse.contents as! UIColor == UIColor.purpleColor() {
+//                    material?.diffuse.contents = UIColor.redColor()
+//                } else {
+//                    material?.diffuse.contents = UIColor.purpleColor()
+//                }
+//                
+//                SCNTransaction.commit()
+//                
+//                let action = SCNAction.moveByX(0, y: -0.5, z: 0, duration: 0.5)
+//                hitedNode.runAction(action)
+//            } else if hitedNode == self.tapTextNode {
+//                let camerasAction = SCNAction.moveTo(SCNVector3(15, 10, 0), duration: 0.5)
+//                self.camerasNode!.runAction(camerasAction, completionHandler: { () -> Void in
+//                    self.performSegueWithIdentifier("Show New Page", sender: self)
+//                })
+//            }
+//        }
     }
     
 //    func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -381,14 +402,15 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     func makeFloor() -> SCNNode {
         let floor = SCNFloor()
         floor.reflectivity = 0
+        floor.firstMaterial!.diffuse.contents = UIColor.blackColor()
         let floorNode = SCNNode()
         floorNode.geometry = floor
-        let floorMaterial = SCNMaterial()
-        floorMaterial.litPerPixel = false
-        floorMaterial.diffuse.contents = UIImage(named:"ground")
-        floorMaterial.diffuse.wrapS = SCNWrapMode.Repeat
-        floorMaterial.diffuse.wrapT = SCNWrapMode.Repeat
-        floor.materials = [floorMaterial]
+//        let floorMaterial = SCNMaterial()
+        //floorMaterial.litPerPixel = false
+//        floorMaterial.diffuse.contents = UIImage(named:"ground")
+//        floorMaterial.diffuse.wrapS = SCNWrapMode.Repeat
+//        floorMaterial.diffuse.wrapT = SCNWrapMode.Repeat
+//        floor.materials = [floorMaterial]
         return floorNode
     }
     

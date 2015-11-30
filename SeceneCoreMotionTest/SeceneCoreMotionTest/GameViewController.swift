@@ -251,12 +251,14 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         boonNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(90), 0)
         scene.rootNode.addChildNode(boonNode)
         
-        let eyes = SCNPlane(width: 20, height: 10)
-        eyes.firstMaterial!.diffuse.contents = UIImage(named: "eyes")
-        let eyesNode = SCNNode(geometry: eyes)
-        eyesNode.position = SCNVector3(0, 0, -20)
-        scene.rootNode.addChildNode(eyesNode)
         
+        createItemNode(5, height: 10, imageName: "bgItem1", position: SCNVector3(10, 5, -10), angle: SCNVector3(0, GLKMathDegreesToRadians(-30), 0), scene: scene)
+        createItemNode(10, height: 10, imageName: "bgItem2", position: SCNVector3(15, 10, 0), angle: SCNVector3(0, GLKMathDegreesToRadians(-90), 0), scene: scene)
+        createItemNode(10, height: 10, imageName: "bgItem3", position: SCNVector3(15, 0, 10), angle: SCNVector3(0, GLKMathDegreesToRadians(-120), 0), scene: scene)
+        createItemNode(10, height: 10, imageName: "bgItem4", position: SCNVector3(-15, 0, 0), angle: SCNVector3(0, GLKMathDegreesToRadians(90), 0), scene: scene)
+        createItemNode(10, height: 10, imageName: "bgItem5", position: SCNVector3(-15, 0, 10), angle: SCNVector3(0, GLKMathDegreesToRadians(120), 0), scene: scene)
+        createItemNode(10, height: 10, imageName: "bgItem6", position: SCNVector3(0, 0, 15), angle: SCNVector3(0, GLKMathDegreesToRadians(180), 0), scene: scene)
+        createItemNode(15, height: 5, imageName: "bgItem7", position: SCNVector3(0, 10, 15), angle: SCNVector3(0, GLKMathDegreesToRadians(145), 0), scene: scene)
         
         // sky 
 //        let skytext = MDLTexture(named: "skybox")
@@ -333,6 +335,25 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         return (180.0/Float(M_PI)) * radians
     }
     
+    //let planesBottom = SCNPlane(width: 20, height: 20)
+    //        planesBottom.firstMaterial!.doubleSided = true
+    //        planesBottom.firstMaterial!.diffuse.contents = UIColor.greenColor()
+    //        let planesBottomNode = SCNNode(geometry: planesBottom)
+    //        //planesBottomNode.pivot = SCNMatrix4MakeRotation(Float(M_PI_2), 1, 0, 0)
+    //        planesBottomNode.eulerAngles = SCNVector3(GLKMathDegreesToRadians(-90), 0, 0)
+    //        planesBottomNode.position = SCNVector3(x: 0, y: -10, z: 0)
+    
+    func createItemNode(width: CGFloat, height: CGFloat, imageName: String, position: SCNVector3, angle: SCNVector3?, scene: SCNScene) {
+        let itemPlane = SCNPlane(width: width, height: height)
+        itemPlane.firstMaterial!.diffuse.contents = UIImage(named: imageName)
+        let itemNode = SCNNode(geometry: itemPlane)
+        itemNode.position = position
+        if angle != nil {
+            itemNode.eulerAngles = angle!
+        }
+        scene.rootNode.addChildNode(itemNode)
+    }
+    
     func tapHandle(recognizer: UITapGestureRecognizer) {
 //        let location = recognizer.locationInView(self.scnView)
 //        
@@ -402,7 +423,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     func makeFloor() -> SCNNode {
         let floor = SCNFloor()
         floor.reflectivity = 0
-        floor.firstMaterial!.diffuse.contents = UIColor.blackColor()
+        floor.firstMaterial!.diffuse.contents = UIImage(named: "ground")
         let floorNode = SCNNode()
         floorNode.geometry = floor
 //        let floorMaterial = SCNMaterial()

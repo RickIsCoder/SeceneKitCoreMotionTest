@@ -258,7 +258,22 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         createItemNode(10, height: 10, imageName: "bgItem4", position: SCNVector3(-15, 0, 0), angle: SCNVector3(0, GLKMathDegreesToRadians(90), 0), scene: scene)
         createItemNode(10, height: 10, imageName: "bgItem5", position: SCNVector3(-15, 0, 10), angle: SCNVector3(0, GLKMathDegreesToRadians(120), 0), scene: scene)
         createItemNode(10, height: 10, imageName: "bgItem6", position: SCNVector3(0, 0, 15), angle: SCNVector3(0, GLKMathDegreesToRadians(180), 0), scene: scene)
-        createItemNode(15, height: 5, imageName: "bgItem7", position: SCNVector3(0, 10, 15), angle: SCNVector3(0, GLKMathDegreesToRadians(145), 0), scene: scene)
+        //createItemNode(15, height: 5, imageName: "bgItem7", position: SCNVector3(0, 10, 15), angle: SCNVector3(0, GLKMathDegreesToRadians(145), 0), scene: scene)
+        //createItemNode(10, height: 5, imageName: "meteor", position: SCNVector3(0, 10, -10), angle: SCNVector3(0, 0, 0), scene: scene)
+        
+        let meteor = SCNPlane(width: 10, height: 5)
+        meteor.firstMaterial!.diffuse.contents = UIImage(named: "meteor")
+        let meteorNode = SCNNode(geometry: meteor)
+        meteorNode.position = SCNVector3(0, 10, -10)
+        scene.rootNode.addChildNode(meteorNode)
+        
+        let fireMeteor = SCNPlane(width: 10, height: 2)
+        fireMeteor.firstMaterial!.diffuse.contents = UIImage(named: "bgItem7")
+        let fireMeteorNode = SCNNode(geometry: fireMeteor)
+        fireMeteorNode.position = SCNVector3(-5, 9, -15)
+        //fireMeteorNode.eulerAngles = SCNVector3(0, GLKMathDegreesToRadians(145), 0)
+        scene.rootNode.addChildNode(fireMeteorNode)
+        
         
         // sky 
 //        let skytext = MDLTexture(named: "skybox")
@@ -325,6 +340,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.addTarget(self, action: "tapHandle:")
         self.scnView.addGestureRecognizer(tapGesture)
+        
+        meteorAction(meteorNode)
+        fireMeteorAction(fireMeteorNode)
     }
     
     func degreesToRadians(degrees: Float) -> Float {
@@ -333,6 +351,28 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     
     func radiansToDegrees(radians: Float) -> Float {
         return (180.0/Float(M_PI)) * radians
+    }
+    
+    func meteorAction(meteor: SCNNode) {
+        let action = SCNAction.moveByX(-30, y: -15, z: 0, duration: 8)
+        //meteor.runAction(SCNAction.repeatActionForever(action))\
+        meteor.runAction(action)
+    }
+    
+    func fireMeteorAction(meteor: SCNNode) {
+//        let frontToRight = SCNAction.moveTo(SCNVector3(15, 9, 0), duration: 5)
+//        let rightToBehind = SCNAction.moveTo(SCNVector3(0, 9, 15), duration: 5)
+//        let behindToLeft = SCNAction.moveTo(SCNVector3(-15, 9, 0), duration: 5)
+//        let leftToFront = SCNAction.moveTo(SCNVector3(0, 9, -15), duration: 5)
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.values = [
+            NSValue(SCNVector3: SCNVector3(0, 0, -15)),
+            NSValue(SCNVector3: SCNVector3(15, 0, 0)),
+            NSValue(SCNVector3: SCNVector3(0, 0, 15)),
+            NSValue(SCNVector3: SCNVector3(-15, 0, 0)),
+        ]
+        animation.duration = 15
+        meteor.addAnimation(animation, forKey: "orbit")
     }
     
     //let planesBottom = SCNPlane(width: 20, height: 20)

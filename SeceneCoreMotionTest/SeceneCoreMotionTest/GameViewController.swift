@@ -201,7 +201,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         // add .scn file
         //let scene1 = SCNScene(named: "art.scnassets/ship.scn")!
         //scene.rootNode.addChildNode(scene1.rootNode.childNodeWithName("ship", recursively: true)!)
-        //scene.rootNode.addChildNode(boxNode)
+
+        let t90 = SCNScene(named: "art.scnassets/t90.scn")!
+        let t90Node = t90.rootNode.childNodeWithName("T-90 reference", recursively: true)!
+        scene.rootNode.addChildNode(t90Node)
+        
         
         
         // Respond to user head movement

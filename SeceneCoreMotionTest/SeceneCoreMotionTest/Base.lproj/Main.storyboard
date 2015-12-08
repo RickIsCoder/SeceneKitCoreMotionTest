@@ -3,20 +3,41 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="SeceneCoreMotionTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <sceneKitView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lrz-CS-igd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qzn-Do-x5O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BaV-d2-J91">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sKj-gp-6Mk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </sceneKitView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W8n-wh-boF">
+                                <rect key="frame" x="534" y="28" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </sceneKitView>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W8n-wh-boF" firstAttribute="trailing" secondItem="BaV-d2-J91" secondAttribute="trailingMargin" id="fXD-oU-ioR"/>
+                            <constraint firstItem="W8n-wh-boF" firstAttribute="top" secondItem="lrz-CS-igd" secondAttribute="bottom" constant="8" symbolic="YES" id="u6U-Sf-x5D"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="scnView" destination="3se-qz-xqx" id="qkY-CA-Zid"/>
+                        <outlet property="RootView" destination="BaV-d2-J91" id="UtK-B3-iIw"/>
+                        <outlet property="scnView" destination="sKj-gp-6Mk" id="lji-5f-gxC"/>
                         <segue destination="aXN-Es-vCC" kind="presentation" identifier="Show New Page" id="AJJ-x2-Ghv"/>
                     </connections>
                 </viewController>

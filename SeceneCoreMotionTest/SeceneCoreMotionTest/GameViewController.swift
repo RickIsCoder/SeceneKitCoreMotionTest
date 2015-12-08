@@ -13,8 +13,10 @@ import CoreMotion
 
 class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
+    @IBOutlet var RootView: UIView!
     
-    @IBOutlet var scnView: SCNView!
+    @IBOutlet weak var scnView: SCNView!
+    
     
     var motionManager : CMMotionManager?
     let camerasNode: SCNNode? = SCNNode()
@@ -77,12 +79,11 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        // add a tap gesture recognizer
 //        let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
 //        scnView.addGestureRecognizer(tapGesture)
-        
-        
+            
         // Create Scene
         let scene = SCNScene()
         
-        scnView.scene = scene
+        scnView!.scene = scene
         //scnView.autoenablesDefaultLighting = true
         
         //Add camera to scene.
@@ -108,7 +109,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         
         scene.rootNode.addChildNode(cameraYawNode)
         
-        scnView.pointOfView = camerasNode
+        scnView!.pointOfView = camerasNode
         
         // Ambient Light
         let ambientLight = SCNLight()
@@ -189,7 +190,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 //        
 //        let skyNode = SCNNode()
         //self.scnView.scene!.background.contents = [UIImage(named: "warlock")!,UIImage(named: "warlock")!,UIImage(named: "warlock")!,UIImage(named: "warlock")!,UIImage(named: "warlock")!,UIImage(named: "warlock")!] as NSArray
-        self.scnView.scene!.background.contents = UIImage(named: "skybox")
+        self.scnView!.scene!.background.contents = UIImage(named: "skybox")
         
         // floor
         let floorNode = makeFloor()
@@ -231,7 +232,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         tapGesture.numberOfTapsRequired = 1
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.addTarget(self, action: "tapHandle:")
-        self.scnView.addGestureRecognizer(tapGesture)
+        self.scnView!.addGestureRecognizer(tapGesture)
         
         meteorAction(meteorNode)
     }
